@@ -1,0 +1,42 @@
+{
+  "name" : "external_data_copy",
+  "jobMode" : "SCRIPT",
+  "description" : "",
+  "role" : "arn:aws:iam::731872584569:role/AWSServiceRole_Glue_RDS_Role",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 5
+  },
+  "command" : {
+    "name" : "glueetl",
+    "scriptLocation" : "s3://aws-glue-assets-731872584569-us-east-1/scripts/external_data_copy.py",
+    "pythonVersion" : "3"
+  },
+  "defaultArguments" : {
+    "--enable-metrics" : "true",
+    "--enable-spark-ui" : "true",
+    "--spark-event-logs-path" : "s3://aws-glue-assets-731872584569-us-east-1/sparkHistoryLogs/",
+    "--enable-job-insights" : "true",
+    "--enable-observability-metrics" : "true",
+    "--conf" : "spark.eventLog.rolling.enabled=true",
+    "--enable-glue-datacatalog" : "true",
+    "--S3_Source_Path" : "default",
+    "--job-bookmark-option" : "job-bookmark-disable",
+    "--job-language" : "python",
+    "--S3_Destination_Path" : "default",
+    "--TempDir" : "s3://aws-glue-assets-731872584569-us-east-1/temporary/"
+  },
+  "maxRetries" : 0,
+  "allocatedCapacity" : 10,
+  "timeout" : 480,
+  "maxCapacity" : 10.0,
+  "glueVersion" : "5.0",
+  "numberOfWorkers" : 10,
+  "workerType" : "G.1X",
+  "executionClass" : "STANDARD",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "glueRepo",
+    "branch" : "main",
+    "folder" : "external_data_copy"
+  }
+}
