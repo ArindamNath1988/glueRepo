@@ -1,0 +1,46 @@
+{
+  "name" : "glue_job_full_load",
+  "jobMode" : "SCRIPT",
+  "description" : "",
+  "role" : "arn:aws:iam::731872584569:role/AWSServiceRole_Glue_RDS_Role",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 5
+  },
+  "command" : {
+    "name" : "glueetl",
+    "scriptLocation" : "s3://aws-glue-assets-731872584569-us-east-1/scripts/glue_job_full_load.py",
+    "pythonVersion" : "3"
+  },
+  "defaultArguments" : {
+    "--loadtype" : "full",
+    "--watermarkcolname" : "col",
+    "--enable-glue-datacatalog" : "true",
+    "--watermark" : "0",
+    "--job-bookmark-option" : "job-bookmark-disable",
+    "--TempDir" : "s3://aws-glue-assets-731872584569-us-east-1/temporary/",
+    "--enable-metrics" : "true",
+    "--spark-event-logs-path" : "s3://aws-glue-assets-731872584569-us-east-1/sparkHistoryLogs/",
+    "--enable-job-insights" : "true",
+    "--enable-observability-metrics" : "true",
+    "--conf" : "spark.eventLog.rolling.enabled=true",
+    "--entityname" : "table",
+    "--job-language" : "python"
+  },
+  "connections" : {
+    "connections" : [ "Postgresql connection" ]
+  },
+  "maxRetries" : 0,
+  "allocatedCapacity" : 10,
+  "timeout" : 480,
+  "maxCapacity" : 10.0,
+  "glueVersion" : "5.0",
+  "numberOfWorkers" : 10,
+  "workerType" : "G.1X",
+  "executionClass" : "STANDARD",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "glueRepo",
+    "branch" : "feature",
+    "folder" : "glue_job_full_load"
+  }
+}
