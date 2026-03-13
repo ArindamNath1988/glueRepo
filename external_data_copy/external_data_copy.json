@@ -1,7 +1,7 @@
 {
   "name" : "external_data_copy",
   "jobMode" : "SCRIPT",
-  "description" : "",
+  "description" : "This notebook is for external data copy",
   "role" : "arn:aws:iam::731872584569:role/AWSServiceRole_Glue_RDS_Role",
   "executionProperty" : {
     "maxConcurrentRuns" : 5
@@ -36,7 +36,7 @@
   "sourceControlDetails" : {
     "provider" : "GITHUB",
     "repository" : "glueRepo",
-    "branch" : "main",
+    "branch" : "featureBranch",
     "folder" : "external_data_copy"
   }
 }
